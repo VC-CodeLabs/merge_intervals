@@ -66,7 +66,6 @@ public class MergeIntervals {
     /**
      * Merge all overlapping intervals
      * @param intervals A List of integer arrays of size 2.
-     *                  Must be sorted by the first element, then the second element.
      *
      * @return a List of merged, non-overlapping intervals
      */
