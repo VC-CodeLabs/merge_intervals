@@ -107,7 +107,7 @@ public class MergeIntervals {
     /**
      * Convert string input into a List of integer arrays of size 2.
      * @param input Must be formatted like [[1,3],[2,6], ... [n,m]]
-     * @return a List of integer arrays sorted by the first element then by the second element
+     * @return a List of integer arrays.
      */
     public static List<int[]> convertInputToArrayList(String input) {
         List<int[]> parsedList = new ArrayList<>();
