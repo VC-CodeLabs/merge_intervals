@@ -1,86 +1,42 @@
 // Copyright (c) 2024 VividCloud.  All rights reserved.
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
-/**
- * Merge overlapping intervals of positive integers from console input.  Example:
- * Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
- * Output: [[1,6],[8,10],[15,18]]
- * Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
- * Expects valid input!!
- *
- * Constraints:
- * intervals[i] = [starti, endi]
- * 1 <= intervals.length <= 10^4
- * intervals[i].length == 2
- * 0 <= starti <= endi <= 10^4
- * The input array is not guaranteed to be sorted
- *
- */
 public class MergeIntervals {
 
     public static void main(String[] args) {
+        
+        int[][] inputArray = {
+                {1, 3},
+                {2, 6},
+                {8, 10},
+                {15, 18},
+                {2, 5},
+                {12, 16},
+                {11, 11},
+                {17, 17},
+                {0, 1}
+        };
 
-        warmUpJvm();
+        Arrays.sort(inputArray, Comparator.comparingInt(a -> a[0]));
 
-        String playAgain = "y";
+        List<int[]> mergedIntervals = mergeIntervals(inputArray);
 
-        Scanner scanner = new Scanner(System.in);
-
-        while("y".equalsIgnoreCase(playAgain)) {
-
-            System.out.println("Enter your intervals:");
-
-            String input = scanner.nextLine();
-
-            List<int[]> intervals = convertInputToArrayList(input);
-
-            long start = System.nanoTime();
-
-            List<int[]> mergedIntervals = mergeIntervals(intervals);
-
-            long stop = System.nanoTime();
-
-            String output = mergedIntervals.stream()
-                    .map(Arrays::toString)
-                    .collect(Collectors.joining(",", "[", "]"));
-
-            NumberFormat nf = NumberFormat.getInstance();
-            System.out.println("Merged:");
-            System.out.println(output);
-            System.out.println("merge time: " + nf.format(stop - start) + " nanos");
-            System.out.println();
-            System.out.println("play again?");
-            playAgain = scanner.nextLine();
-        }
-        System.out.println("Thanks for playing!");
-        System.out.println("Copyright 2024, VividCloud. Smarter software, engineered here.");
+        System.out.println(formatList(mergedIntervals));
     }
 
-    /**
-     * Merge all overlapping intervals
-     * @param intervals A List of integer arrays of size 2.
-     *
-     * @return a List of merged, non-overlapping intervals
-     */
-    public static List<int[]> mergeIntervals(List<int[]> intervals) {
-
-        // first, sort intervals by start number
-        intervals.sort(Comparator.comparingInt(a -> a[0]));
+    public static List<int[]> mergeIntervals(int[][] intervals) {
 
         List<int[]> mergedIntervals = new ArrayList<>();
 
-        int[] mergedInterval = intervals.get(0);
+        int[] mergedInterval = intervals[0];
 
-        for (int i = 1; i < intervals.size(); i++) {
+        for (int i = 1; i < intervals.length; i++) {
 
-            int[] thisInterval = intervals.get(i);
+            int[] thisInterval = intervals[i];
 
             if (thisInterval[0] <= mergedInterval[1]) {
                 // thisInterval starts inside the mergedInterval
@@ -103,36 +59,21 @@ public class MergeIntervals {
         return mergedIntervals;
     }
 
-    /**
-     * Convert string input into a List of integer arrays of size 2.
-     * @param input Must be formatted like [[1,3],[2,6], ... [n,m]]
-     * @return a List of integer arrays.
-     */
-    public static List<int[]> convertInputToArrayList(String input) {
-        List<int[]> parsedList = new ArrayList<>();
-
-        input = input.substring(1, input.length() - 1);
-
-        String[] arrayStrings = input.split("\\],\\[");
-
-        for (String arrayString : arrayStrings) {
-            arrayString = arrayString.replaceAll("\\[|\\]", "");
-
-            String[] numberStrings = arrayString.split(",");
-            int[] array = new int[numberStrings.length];
-
-            for (int i = 0; i < numberStrings.length; i++) {
-                array[i] = Integer.parseInt(numberStrings[i]);
+    private static String formatList(List<int[]> list) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < list.size(); i++) {
+            int[] interval = list.get(i);
+            sb.append("[");
+            sb.append(interval[0]);
+            sb.append(",");
+            sb.append(interval[1]);
+            sb.append("]");
+            if (i < list.size() - 1) {
+                sb.append(",");
             }
-
-            parsedList.add(array);
         }
-
-        return parsedList;
-    }
-
-    private static void warmUpJvm() {
-        List<int[]> warmup = convertInputToArrayList("[[1,3],[2,6],[8,10],[15,18],[2,5],[12,16],[0,1]]");
-        mergeIntervals(warmup);
+        sb.append("]");
+        return sb.toString();
     }
 }
