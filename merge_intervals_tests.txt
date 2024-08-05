@@ -1,0 +1,40 @@
+1. Single Interval
+Input: [[1, 3]]
+Expected Output: [[1, 3]]
+
+2. Non-Overlapping Intervals
+Input: [[1, 2], [3, 4]]
+Expected Output: [[1, 2], [3, 4]]
+
+3. Overlapping Intervals
+Input: [[1, 4], [2, 3]]
+Expected Output: [[1, 4]]
+
+4. Mixed Overlapping and Non-Overlapping
+Input: [[1, 3], [2, 6], [8, 10], [15, 18], [17, 20], [21, 23], [22, 24], [25, 27], [26, 29], [30, 35], [32, 34]]
+Expected Output: [[1, 6], [8, 10], [15, 20], [21, 24], [25, 29], [30, 35]]
+
+5. All Intervals Overlap into One
+Input: [[1, 3], [2, 4], [3, 5], [4, 6], [5, 7], [6, 8], [7, 9], [8, 10], [9, 11], [10, 12]]
+Expected Output: [[1, 12]]
+
+6. Unsorted Intervals
+Input: [[10, 11], [3, 5], [1, 2], [8, 9], [4, 6], [7, 8], [5, 7], [9, 10], [2, 4], [6, 7]]
+Expected Output: [[1, 11]]
+
+7. Intervals with the Same Start Point
+Input: [[1, 13], [1, 12], [1, 11], [1, 10], [1, 8], [1, 9], [1, 6], [1, 4], [1, 5], [1, 7]]
+Expected Output: [[1, 13]]
+
+8. Single Point Intervals
+Input: [[1, 1], [3, 3], [5, 5], [2, 2], [4, 4]]
+Expected Output: [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+
+9. Edge Case: Intervals with Large Gaps
+Input: [[1, 2], [10, 11], [20, 21], [30, 31]]
+Expected Output: [[1, 2], [10, 11], [20, 21], [30, 31]]
+
+10. Edge Case: Large Numbers
+Input: [[500000, 1000001], [200000, 300000], [700000, 800000], [100000, 150000], [1, 1000000], [750000, 900000], [850000, 950000], [0, 50000], [400000, 600000], [300000, 500000], [950000, 1050000]]
+Expected Output: [[0, 1050000]]
+
