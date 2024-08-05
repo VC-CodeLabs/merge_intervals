@@ -2,7 +2,7 @@ const std = @import("std");
 const print = std.debug.print;
 
 pub fn main() !void {
-    const start_time = std.time.nanoTimestamp();
+    // const start_time = std.time.nanoTimestamp();
 
     var input = [_][2]u16{ [_]u16{ 15, 18 }, [_]u16{ 8, 10 }, [_]u16{ 2, 6 }, [_]u16{ 1, 3 } };
     // var input = [_][2]u16{ [_]u16{ 1, 2 }, [_]u16{ 3, 4 }, [_]u16{ 5, 6 } };
@@ -10,8 +10,8 @@ pub fn main() !void {
     // var input = [_][2]u16{ [_]u16{ 0, 1 }, [_]u16{ 1, 2 }, [_]u16{ 2, 3 }, [_]u16{ 3, 4 } };
     try merge(input[0..]);
 
-    const end_time = std.time.nanoTimestamp();
-    print("Time: {} ns\n", .{end_time - start_time});
+    // const end_time = std.time.nanoTimestamp();
+    // print("Time: {} ns\n", .{end_time - start_time});
 }
 
 fn merge(input: [][2]u16) !void {
