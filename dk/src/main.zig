@@ -39,9 +39,9 @@ fn merge(input: [][2]u16) !void {
 
     const stdout = std.io.getStdOut().writer();
     _ = try stdout.write("[");
-    for (result, 0..) |item, i| {
+    for (result[0 .. ri + 1], 0..) |item, i| {
         try stdout.print("[{},{}]", .{ item[0], item[1] });
-        if (i != result.len - 1) {
+        if (i != ri) {
             _ = try stdout.write(",");
         }
     }
